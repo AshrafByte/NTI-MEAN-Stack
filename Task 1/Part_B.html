@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Task 2</title>
+</head>
+
+<body>
+<!-- Add your site or application content here -->
+<p>Hello world! This is HTML5 Boilerplate.</p>
+<div class="user_table">
+    <h1>Table of Users</h1>
+    <table>
+        <thead>
+        <th>Name</th>
+        <th>Age</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    let persons = [];
+
+    let personsCnt = getProcessCnt();
+    for (let i = 0; i < personsCnt; i++) {
+        let personInfo = getPersonInfo(i);
+        let [name, age] = personInfo.split(" ");
+        persons.push({name: name, age: age});
+    }
+
+    addPersonsToTable(persons);
+
+    //////////////////////////////////////////////////////////////////
+    function validInfo(personInfo) {
+        let [name, age] = personInfo.split(" ");
+        age = parseInt(age, 10);
+
+        let validAge = !isNaN(age) && age > 10 && age < 60;
+        let validName = name && name.length > 3 && name.length < 10;
+        let isValid = validAge && validName;
+
+        let alertMsg = (!validAge)  ? "Please enter valid age (should be greater than 10 and less than 60)"
+            : "Please enter valid name (should be more than 3 and less than 10 characters)";
+        if (!isValid) alert(alertMsg);
+
+        return isValid;
+    }
+
+    function validCnt(cnt) {
+        let isValid = !isNaN(cnt) && cnt > 0;
+        if (!isValid) alert("Please enter valid count");
+        return isValid;
+
+    }
+
+    function getProcessCnt() {
+        let personsCnt;
+        do
+            personsCnt = parseInt(prompt("Enter number of persons"));
+        while (!validCnt(personsCnt))
+        return personsCnt;
+    }
+
+    function getPersonInfo(i) {
+        let personInfo;
+        do
+            personInfo = prompt(`Enter person ${i + 1} name (should be more than 3 and less than 10 characters) and age (should be greater than 10 and less than 60). Example: "Ahmed 27"`);
+        while (!validInfo(personInfo))
+        return personInfo;
+    }
+
+    function addPersonsToTable(persons) {
+        const tableBody = document.getElementsByTagName("tbody")[0];
+
+        persons.forEach(person => {
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = person.name;
+
+            const ageCell = document.createElement("td");
+            ageCell.textContent = person.age;
+
+            row.appendChild(nameCell);
+            row.appendChild(ageCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+</script>
+
+</body>
+
+</html>
