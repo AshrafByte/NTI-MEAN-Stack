@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div onclick="cloneDiv()" style="width: 100%; height: 100px; background-color: red;">
+</div>
+
+<script>
+    function cloneDiv() {
+        let colors = ["green", "yellow", "blue" , "purple" , "black" , "white"];
+
+        let originalDiv = document.getElementsByTagName("div")[0];
+        let clonedDiv = originalDiv.cloneNode(false); // 'false' to not clone children
+
+        clonedDiv.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        document.body.appendChild(clonedDiv);
+    }
+</script>
+</body>
+</html>
