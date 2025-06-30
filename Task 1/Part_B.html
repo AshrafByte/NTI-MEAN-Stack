@@ -26,7 +26,7 @@
 
     let persons = [];
 
-    let personsCnt = getProcessCnt();
+    let personsCnt = getPersonsCnt();
     for (let i = 0; i < personsCnt; i++) {
         let personInfo = getPersonInfo(i);
         let [name, age] = personInfo.split(" ");
@@ -58,7 +58,7 @@
 
     }
 
-    function getProcessCnt() {
+    function getPersonsCnt() {
         let personsCnt;
         do
             personsCnt = parseInt(prompt("Enter number of persons"));
