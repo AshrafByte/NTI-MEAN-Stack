@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+<form id="form" onsubmit="event.preventDefault(); validateUser();">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <button type="submit">Add</button>
+    <button type="reset">Reset</button>
+</form>
+
+<table id = "users" border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+
+</table>
+<script src="validation.js"></script>
+</body>
+</html>
