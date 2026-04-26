@@ -1,0 +1,89 @@
+<div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+  <!-- Product Image -->
+  <div class="relative flex-shrink-0">
+    <a [routerLink]="['/product', product.id]" class="block">
+      <div class="bg-gray-200 h-48 rounded-t-lg flex items-center justify-center overflow-hidden">
+        @if (product.image) {
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+        } @else {
+          <span class="text-gray-500 text-center px-4">{{ product.name }}</span>
+        }
+      </div>
+    </a>
+    <!-- Sale Badge -->
+    @if (product.onSale) {
+      <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+        SALE
+      </div>
+    }
+    <!-- New Badge -->
+    @if (product.isNew) {
+      <div class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+        NEW
+      </div>
+    }
+  </div>
+
+  <!-- Product Info -->
+  <div class="p-4 flex flex-col flex-grow">
+    <!-- Product Name - Fixed height -->
+    <h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem] flex items-center">
+      <a [routerLink]="['/product', product.id]" class="hover:text-blue-600 transition-colors duration-200">
+        {{ product.name }}
+      </a>
+    </h3>
+
+    <!-- Product Description - Fixed height -->
+    <p class="text-gray-600 text-sm mb-3 line-clamp-2 min-h-[2.5rem] flex-grow">
+      {{ product.description }}
+    </p>
+
+    <!-- Rating - Fixed position -->
+    <div class="flex items-center mb-3 h-5">
+      <div class="flex items-center">
+        @for (star of getStarArray(product.rating); track $index) {
+          <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+          </svg>
+        }
+      </div>
+      <span class="text-gray-500 text-sm ml-1">({{ product.reviews }})</span>
+    </div>
+
+    <!-- Price Section - Fixed height and positioning -->
+    <div class="mt-auto">
+      <div class="flex items-center justify-between mb-4 min-h-[2rem]">
+        <div class="flex items-center">
+          @if (product.originalPrice && product.originalPrice !== product.price) {
+            <span class="text-gray-500 line-through text-sm mr-2">
+              ${{ product.originalPrice.toFixed(2) }}
+            </span>
+          }
+          <span class="text-xl font-bold text-blue-700">
+            ${{ product.price.toFixed(2) }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Add to Cart Button - Always at bottom -->
+      <div class="flex gap-2">
+        <button
+          (click)="onAddToCart($event)"
+          class="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center transition-colors duration-200">
+          Add to Cart
+        </button>
+        <a
+          [routerLink]="['/product', product.id]"
+          class="flex items-center justify-center px-3 py-2.5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 transition-colors duration-200">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

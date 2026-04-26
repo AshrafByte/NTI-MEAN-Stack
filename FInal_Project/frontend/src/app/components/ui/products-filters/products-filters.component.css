@@ -1,0 +1,23 @@
+
+.filter-container {
+  backdrop-filter: blur(10px);
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filter-select:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+}

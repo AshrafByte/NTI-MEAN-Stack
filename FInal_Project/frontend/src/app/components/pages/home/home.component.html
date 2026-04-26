@@ -1,0 +1,18 @@
+<main>
+  <app-carousel></app-carousel>
+  <app-featured-products
+    [allProducts]="products"
+    [maxProducts]="8"
+    [title]="'Featured Products'"
+    [subtitle]="'Discover our handpicked selection of trending and popular products.'"
+    [filterBy]="'featured'"
+    (addToCartEvent)="onAddToCart($event)">
+  </app-featured-products>
+  <app-categories-section
+    (categoryClickEvent)="onCategoryClick($event)">
+  </app-categories-section>
+  <app-newsletter-section
+    (subscribeEvent)="onNewsletterSubscribe($event)">
+  </app-newsletter-section>
+</main>
+

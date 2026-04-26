@@ -1,0 +1,19 @@
+
+.order-status-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.order-item-card {
+  @apply flex items-center space-x-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors;
+}
+
+.order-summary-card {
+  @apply bg-gray-50 p-4 rounded-lg border border-gray-100;
+}
+
+
+@media (max-width: 640px) {
+  .order-item-card {
+    @apply flex-col space-x-0 space-y-3 text-center;
+  }
+}

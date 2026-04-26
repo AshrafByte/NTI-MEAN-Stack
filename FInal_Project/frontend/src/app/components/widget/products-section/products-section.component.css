@@ -1,0 +1,13 @@
+.carousel-item {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel:hover .carousel-item {
+  animation-play-state: paused;
+}
+
+.carousel img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
